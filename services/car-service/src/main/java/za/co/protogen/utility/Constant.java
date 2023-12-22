@@ -36,6 +36,22 @@ public class Constant {
         car2.setOwnerId(456);
         car2.setFeatures(new ArrayList<>());
         cars.add(car2);
+
+        Car car3 = new Car();
+        car3.setMake("Honda");
+        car3.setModel("Civic");
+        car3.setYear(2023);
+        car3.setColor("blue");
+        car3.setEngine("1.5L");
+        car3.setTransmission("CVT");
+        car3.setFuelType("Gasoline");
+        car3.setMileage(15000);
+        car3.setVin("XYZ987");
+        car3.setPrice(22000);
+        car3.setOwnerId(496);
+        car3.setFeatures(new ArrayList<>());
+        cars.add(car3);
+
         // Add more cars as needed
     }
 }
