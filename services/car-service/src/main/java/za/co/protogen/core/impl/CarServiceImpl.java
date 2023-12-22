@@ -2,6 +2,8 @@
  *
  * @author luyas
  */
+
+/*this is the implementation of the CarService interface which overrides methods in the interface */
 package za.co.protogen.core.impl;
 
 import za.co.protogen.core.CarService;
@@ -12,10 +14,12 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     private List<Car> cars;
 
+    // constructor
     public CarServiceImpl(List<Car> cars) {
         this.cars = cars;
     }
 
+    // override methods
     @Override
     public void addCar(Car car) {
         cars.add(car);
@@ -25,7 +29,6 @@ public class CarServiceImpl implements CarService {
     public void removeCar(int carId) {
         cars.removeIf(car -> Integer.toString(carId).equals(Integer.toString(car.getOwnerId())));
     }
-
 
     @Override
     public Car getCarById(int carId) {

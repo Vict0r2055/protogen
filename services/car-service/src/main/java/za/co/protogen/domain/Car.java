@@ -28,6 +28,7 @@ public class Car {
    public Car() {
    }
 
+   // getter methods
    public String getColor() {
       return this.color;
    }
@@ -64,12 +65,14 @@ public class Car {
       return this.engine;
    }
 
-   public void setTransmission(String var1) {
-      this.transmission = var1;
-   }
-
    public String getFuelType() {
       return this.fuelType;
+   }
+
+   // Setter methods
+
+   public void setTransmission(String var1) {
+      this.transmission = var1;
    }
 
    public void setFuelType(String var1) {
@@ -116,6 +119,8 @@ public class Car {
       this.features = var1;
    }
 
+   // i made this to override the toString method to return more understandable
+   // code easy to read when running the application main method
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();

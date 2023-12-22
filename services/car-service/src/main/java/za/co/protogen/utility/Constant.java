@@ -7,7 +7,7 @@ import za.co.protogen.domain.Car;
 public class Constant {
     public static List<Car> cars = new ArrayList<>();
     static {
-        // Add mock data
+        // mock data
         Car car1 = new Car();
         car1.setMake("Toyota");
         car1.setModel("Corolla");
