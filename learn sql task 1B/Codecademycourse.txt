@@ -1,0 +1,132 @@
+SQL-  Structured Query Language
+a programming language Designed to manage relational databases
+can ensure integrity and manage big databases
+mostly used across web frameworksand database applications
+
+SELECT * FROM celebs this command retrived a table called celebs and all its contents because with the * wildcard selected all collumns of database
+fetching 3 colums id, name and age
+
+relational database - is A relational database is a database that organizes information into one or more tables
+ table is a collection of data stored in a format of rows and collumns
+ data stored in a relational database is of a certain data type 
+ datatypes Integers, text, date, real
+
+a statement is a text that is recognised as a valid command and they always end with a semicolon ";"
+
+CREATE TABLE table_name (
+   column_1 data_type, 
+   column_2 data_type, 
+   column_3 data_type
+);
+
+CREATE TABLE - is a clause that performs a task and are written in ALL CAPS also known as commands
+table_name - this refers to the name of the table
+(
+   column_1 data_type, 
+   column_2 data_type, 
+   column_3 data_type
+) - is a parameter a list of columns and their data_types
+
+SELECT, FROM  these are clauses
+the changes are being applied to table celebs
+
+CREATE statements create new tables in the database
+
+CREATE TABLE celebs (
+   id INTEGER, 
+   name TEXT, 
+   age INTEGER
+);
+ IN the above code  the CREATE TABLE statement creates a new table
+ celebs defines the name of the table
+ (id INTEGER, name TEXT, age INTEGER) this is a list of parameters defining the columns inthe relationa database defining column name and it's data type
+ 1. id is the 1st column in table with stores data as an Integer
+ 2. name is the second column which stores data as TEXT
+ 3. age is the third column where the data is stored as Integers
+
+ INSERT statement inserts a new row into the table
+ it is used to add new records
+
+ INSERT INTO celebs (id, name, age) 
+VALUES (1, 'Justin Bieber', 29);
+INSERT INTO is a command that adds the specified row/rows into a table
+celebs is the selected table to where rows are to be added
+(id, name, age) these are parameters identifying the columns that data will be inserted into
+VALUES A COMMAND that indicates the data being inserted
+
+SELECT statements are used to fetch data from a database
+
+eg SELECT name FROM celebs;
+SELECT returns all data in the name column of the celebs table.
+
+eg SELECT * FROM celebs;
+this query data from all columns in a table with SELECT.
+"*" is a special wildcard charecter  allows you to select every column in a table without having to name each one individually
+
+SELECT statements always return a new table called the result set.
+
+
+Alter
+The ALTER TABLE statement adds a new column to a table. You can use this command when you want to add columns to a table
+
+ALTER TABLE celebs 
+ADD COLUMN twitter_handle TEXT;
+
+The command above adds a new column twitter_handle to the celebs table
+1. ALTER TABLE is a clause that lets you make the specified changes.
+2. celebs is the name of the table that is being changed.
+3. ADD COLUMN is a clause that lets you add a new column to a table.
+
+twitter_handle is the name of the new column being added
+TEXT is the data type forthe new column
+4. NULL A special value in SQL that represents missing or unknown data
+
+ALTER TABLE celebs 
+ADD COLUMN twitter_handle TEXT; 
+
+SELECT * FROM celebs;
+
+Update
+The UPDATE statement edits a row in a table. You can use the UPDATE statement when you want to change existing records.
+
+UPDATE celebs 
+SET twitter_handle = '@taylorswift13' 
+WHERE id = 4;  this one  updates the record with an id value of 4 to have the twitter_handle @taylorswift13.
+
+
+1. UPDATE is a clause that edits a row in the table.
+2. celebs is the name of the table.
+3. SET is a clause that indicates the column to edit.
+
+twitter_handle is the name of the column that is going to be updated
+@taylorswift13 is the new value that is going to be inserted into the twitter_handle column.
+4. WHERE is a clause that indicates which row(s) to update with the new column value. Here the row with a 4 in the id column is the row that will have the twitter_handle updated to @taylorswift13.
+
+
+Delete
+The DELETE FROM statement deletes one or more rows from a table. You can use the statement when you want to delete existing records. 
+
+DELETE FROM celebs 
+WHERE twitter_handle IS NULL;deletes all records in the celebs table with no twitter_handle
+DELETE FROM is a clause that lets you delete rows from a table.
+celebs is the name of the table we want to delete rows from.
+WHERE is a clause that lets you select which rows you want to delete.
+IS NULL is a condition in SQL that returns true when the value is NULL and false otherwise.
+
+Constraints
+
+Constraints that add information about how a column can be used are invoked after specifying the data type for a column
+
+CREATE TABLE celebs (
+   id INTEGER PRIMARY KEY, 
+   name TEXT UNIQUE,
+   date_of_birth TEXT NOT NULL,
+   date_of_death TEXT DEFAULT 'Not Applicable'
+);
+PRIMARY KEY columns can be used to uniquely identify the row. Attempts to insert a row with an identical value to a row already in the table will result in a constraint violation which will not allow you to insert the new row.
+
+2. UNIQUE columns have a different value for every row. This is similar to PRIMARY KEY except a table can have many different UNIQUE columns.
+
+3. NOT NULL columns must have a value. Attempts to insert a row without a value for a NOT NULL column will result in a constraint violation and the new row will not be inserted.
+
+4. DEFAULT columns take an additional argument that will be the assumed value for an inserted row if the new row does not specify a value for that column.
