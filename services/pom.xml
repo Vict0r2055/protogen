@@ -13,7 +13,7 @@
     <modules>
         <module>car-service</module>
         <module>users-service</module>
-        <!-- Add more modules if needed -->
+        <module>reservations-service</module>
     </modules>
 
     <!-- Other configurations for the parent POM can go here -->
