@@ -1,0 +1,5 @@
+za\co\protogen\Application.class
+za\co\protogen\domain\Car.class
+za\co\protogen\utility\Constant.class
+za\co\protogen\core\CarService.class
+za\co\protogen\core\impl\CarServiceImpl.class
