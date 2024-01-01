@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Constant {
+    public static final String USERS_RESOURCE = "/users";
     public static List<User> users = new ArrayList<>();
     
     static {

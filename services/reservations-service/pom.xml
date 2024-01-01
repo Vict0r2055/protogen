@@ -26,13 +26,38 @@
         <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.1</version>
             <configuration>
-                <!-- Specify the fully qualified name of your main class -->
                 <mainClass>za.co.protogen.Application</mainClass>
             </configuration>
         </plugin>
+
+         
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>3.2.1</version>
+        </plugin>
     </plugins>
 </build>
+<dependencies>
+    <!-- Spring Boot Starter Web for REST support -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>3.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>3.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.200</version>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
 
 </project>

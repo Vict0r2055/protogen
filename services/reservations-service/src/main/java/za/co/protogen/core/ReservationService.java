@@ -15,7 +15,7 @@ public interface ReservationService {
     void removeReservation(Long reservationId);
     Reservation getReservationById(Long reservationId);
     List<Reservation> getAllReservations();
-    boolean updateReservation(Reservation reservation);
+    void updateReservation(Long reservationId, Reservation updatedReservation);
     List<Reservation> searchReservations(Long userId, Long carId, LocalDate fromDate, LocalDate toDate);
 
     

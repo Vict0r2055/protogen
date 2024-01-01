@@ -10,37 +10,46 @@ import za.co.protogen.core.CarService;
 import za.co.protogen.domain.Car;
 import java.util.ArrayList;
 import java.util.List;
+import za.co.protogen.utility.Constant;
 
+// import org.apache.tomcat.util.bcel.classfile.Constant;
+import org.springframework.stereotype.Service;
+
+@Service
 public class CarServiceImpl implements CarService {
-    private List<Car> cars;
+    private List<Car> cars = Constant.cars;
 
-    // constructor
-    public CarServiceImpl(List<Car> cars) {
-        this.cars = cars;
-    }
+    // public CarServiceImpl() {
+    // this.cars = new ArrayList<>();
+    // }
+
+    // // constructor
+    // public CarServiceImpl(List<Car> cars) {
+    // this.cars = cars;
+    // }
 
     // override methods
     @Override
     public void addCar(Car car) {
-        cars.add(car);
+        Constant.cars.add(car);
     }
 
     @Override
     public void removeCar(int carId) {
-        cars.removeIf(car -> Integer.toString(carId).equals(Integer.toString(car.getOwnerId())));
+        cars.removeIf(car -> Integer.toString(carId).equals(Integer.toString(car.getCarId())));
     }
 
     @Override
     public Car getCarById(int carId) {
         return cars.stream()
-                .filter(car -> car.getOwnerId() == carId)
+                .filter(car -> car.getCarId() == carId)
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
     public List<Car> getAllCars() {
-        return new ArrayList<>(cars);
+        return new ArrayList<>(Constant.cars);
     }
 
     @Override
@@ -79,8 +88,45 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateCar(int carId, Car updatedCar) {
         for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getOwnerId() == carId) {
-                cars.set(i, updatedCar);
+            Car existingCar = cars.get(i);
+            if (existingCar.getCarId() == carId) {
+                if (updatedCar.getTransmission() != null && !updatedCar.getTransmission().isEmpty()) {
+                    existingCar.setTransmission(updatedCar.getTransmission());
+                }
+                if (updatedCar.getFuelType() != null && !updatedCar.getFuelType().isEmpty()) {
+                    existingCar.setFuelType(updatedCar.getFuelType());
+                }
+                if (updatedCar.getColor() != null && !updatedCar.getColor().isEmpty()) {
+                    existingCar.setColor(updatedCar.getColor());
+                }
+                if (updatedCar.getEngine() != null && !updatedCar.getEngine().isEmpty()) {
+                    existingCar.setEngine(updatedCar.getEngine());
+                }
+                if (updatedCar.getMileage() >= 0) {
+                    existingCar.setMileage(updatedCar.getMileage());
+                }
+                if (updatedCar.getPrice() >= 0) {
+                    existingCar.setPrice(updatedCar.getPrice());
+                }
+                if (updatedCar.getMake() != null && !updatedCar.getMake().isEmpty()) {
+                    existingCar.setMake(updatedCar.getMake());
+                }
+                if (updatedCar.getModel() != null && !updatedCar.getModel().isEmpty()) {
+                    existingCar.setModel(updatedCar.getModel());
+                }
+                if (updatedCar.getYear() > 0) {
+                    existingCar.setYear(updatedCar.getYear());
+                }
+                // if (updatedCar.getVin() != null && !updatedCar.getVin().isEmpty()) {
+                // existingCar.setVin(updatedCar.getVin());
+                // }
+                if (updatedCar.getOwnerId() > 0) {
+                    existingCar.setOwnerId(updatedCar.getOwnerId());
+                }
+                // if (updatedCar.getFeatures() != null) {
+                // existingCar.setFeatures(updatedCar.getFeatures());
+                // }
+
                 break;
             }
         }

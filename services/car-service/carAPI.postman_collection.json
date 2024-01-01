@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "471d2798-9aaf-4eeb-89fa-f44ab1e1f1a4",
+		"name": "carAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32070866"
+	},
+	"item": [
+		{
+			"name": "Get All Cars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9102/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get car by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9102/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transmission\": \"Automatic\",\r\n    \"make\": \"Toyota\",\r\n    \"model\": \"Camry\",\r\n    \"year\": 2022,\r\n    \"color\": \"Silver\",\r\n    \"engine\": \"2.5L Inline-4\",\r\n    \"fuelType\": \"Petrol\",\r\n    \"mileage\": 15000,\r\n    \"vin\": \"ABC123XYZ456\",\r\n    \"price\": 25000.0,\r\n    \"ownerId\": 123,\r\n    \"features\": [\"Air Conditioning\", \"Power Windows\", \"Bluetooth\"],\r\n    \"carId\": 4\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9102/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update car",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transmission\": \"Automatic\",\r\n    \"make\": \"Updated Make\",\r\n    \"model\": \"Updated Model\",\r\n    \"year\": 2023,\r\n    \"color\": \"Blue\",\r\n    \"engine\": \"3.0L V6\",\r\n    \"fuelType\": \"Diesel\",\r\n    \"mileage\": 18000,\r\n    \"vin\": \"XYZ789ABC456\",\r\n    \"price\": 28000.0,\r\n    \"ownerId\": 456,\r\n    \"features\": [\"Air Conditioning\", \"Power Windows\", \"Navigation\"],\r\n    \"carId\": 2\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9102/cars/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						"cars",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete car",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9102/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

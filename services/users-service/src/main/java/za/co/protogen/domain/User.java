@@ -12,7 +12,7 @@ public class User {
 
     // Constructors
     public User() {
-        
+
     }
 
     public User(Long id, String firstName, String lastName, LocalDate dateOfBirth, String rsaId) {
@@ -64,7 +64,6 @@ public class User {
         this.rsaId = rsaId;
     }
 
-   
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -73,7 +72,7 @@ public class User {
         sb.append("Last Name: ").append(lastName).append("\n");
         sb.append("Date of Birth: ").append(dateOfBirth).append("\n");
         sb.append("South African ID: ").append(rsaId).append("\n");
-        
+
         return sb.toString();
     }
 }

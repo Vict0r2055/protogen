@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "ece1e2ea-8ecc-4035-b165-93ca4dc1a631",
+		"name": "reservationAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32070866"
+	},
+	"item": [
+		{
+			"name": "Get All reservations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get reservation by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/reservations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"reservations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add reservation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"userId\": 1,\r\n    \"carId\": 1,\r\n    \"fromDate\": \"2024-01-01\",\r\n    \"toDate\": \"2024-01-10\",\r\n    \"pickUpLocation\": \"City A\",\r\n    \"dropoffLocation\": \"City B\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9103/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update reservation",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":1,\r\n    \"carId\":1,\r\n    \"fromDate\": \"2024-01-15\",\r\n    \"toDate\": \"2024-01-25\",\r\n    \"pickUpLocation\": \"Updated City A\",\r\n    \"dropoffLocation\": \"Updated City B\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9103/reservations/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"reservations",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete reservation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/reservations/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"reservations",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

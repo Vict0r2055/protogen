@@ -24,11 +24,17 @@ public class Car {
    private double price;
    private int ownerId;
    private List<String> features;
+   private int carId;
 
    public Car() {
    }
 
    // getter methods
+
+   public int getCarId() {
+      return this.carId;
+   }
+
    public String getColor() {
       return this.color;
    }
@@ -70,6 +76,10 @@ public class Car {
    }
 
    // Setter methods
+
+   public void setCarId(int var1) {
+      this.carId = var1;
+   }
 
    public void setTransmission(String var1) {
       this.transmission = var1;
@@ -124,6 +134,8 @@ public class Car {
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
+      sb.append("\n");
+      sb.append("Car ID: ").append(carId).append("\n");
       sb.append("Make: ").append(make).append("\n");
       sb.append("Model: ").append(model).append("\n");
       sb.append("Year: ").append(year).append("\n");

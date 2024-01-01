@@ -4,31 +4,23 @@
  */
 package za.co.protogen;
 
-import za.co.protogen.domain.Car; // imports Car class 
-import za.co.protogen.core.CarService; // imports CarServices interface
-import za.co.protogen.core.impl.CarServiceImpl;// imports the implementation logic for CarServices
-import za.co.protogen.utility.Constant; // contains mock data
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+// import org.springframework.context.ConfigurableApplicationContext;
+// import za.co.protogen.core.CarService;
+// import za.co.protogen.core.impl.CarServiceImpl;
+import za.co.protogen.utility.Constant;
+import za.co.protogen.domain.Car;
 import java.util.List;
 
+@SpringBootApplication
 public class Application {
-
     public static void main(String[] args) {
-        // Initialize the car data using the Constant class
-        List<Car> cars = Constant.cars;
-
-        // Creating an instance of the CarService with the list
-        CarService carService = new CarServiceImpl(cars);
-
-        // Getting All cars in list
-        List<Car> allCars = carService.getAllCars();
-        System.out.println("All Cars:");
-        allCars.forEach(System.out::println);
-
-        // Filtering cars by make
-        List<Car> toyotaCars = carService.getCarsByMake("Toyota");
-        System.out.println("\nToyota Cars:");
-        toyotaCars.forEach(System.out::println);
+        SpringApplication.run(Application.class, args);
+        // System.out.println(Constant.cars.toString());
+        // // System.out.println(Constant.cars.getCarById(1));
+        // List<Car> cars = Constant.cars;
+        // System.out.println(cars);
 
     }
 }
