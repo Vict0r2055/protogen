@@ -3,72 +3,66 @@ package za.co.protogen.core.impl;
 // imports
 import za.co.protogen.core.UserService;
 import za.co.protogen.domain.User;
-import za.co.protogen.utility.Constant;
-// import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
+import za.co.protogen.persistence.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     // implements addUser method from UserService interface
     @Override
     public void addUser(User user) {
-        Constant.users.add(user);
+        userRepository.save(user);
     }
 
     // implenments removeUser method from UserService interface
     @Override
-    public void removeUser(Long userId) {
-        Iterator<User> iterator = Constant.users.iterator();
-        while (iterator.hasNext()) {
-            User user = iterator.next();
-            if (user.getId().equals(userId)) {
-                iterator.remove();
-                break;
-            }
-        }
+    public void removeUser(int Id) {
+        userRepository.deleteById(Id);
     }
 
     // implements getUserById method from UserService interface
     @Override
-    public User getUserById(Long userId) {
-        for (User user : Constant.users) {
-            if (user.getId().equals(userId)) {
-                return user;
-            }
-        }
-        return null;
+    public User getUserById(int Id) {
+        Optional<User> optionalUser = userRepository.findById(Id);
+        return optionalUser.orElse(null);
+
     }
 
     // implements getAllUsers method from UserService interface
     @Override
     public List<User> getAllUsers() {
-        return new ArrayList<>(Constant.users);
+        return userRepository.findAll();
     }
 
-    // implements updateUser method from UserService interface
     @Override
-    public void updateUser(Long userId, User updatedUser) {
-        for (int i = 0; i < Constant.users.size(); i++) {
-            User user = Constant.users.get(i);
-            if (user.getId().equals(userId)) {
+    public void updateUser(int Id, User updatedUser) {
+        Optional<User> optionalExistingUser = userRepository.findById(Id);
+        optionalExistingUser.ifPresent(existingUser -> {
+            if (existingUser.getId() == Id) {
                 // Update only the provided attributes
                 if (updatedUser.getFirstName() != null)
-                    user.setFirstName(updatedUser.getFirstName());
+                    existingUser.setFirstName(updatedUser.getFirstName());
                 if (updatedUser.getLastName() != null)
-                    user.setLastName(updatedUser.getLastName());
+                    existingUser.setLastName(updatedUser.getLastName());
                 if (updatedUser.getDateOfBirth() != null)
-                    user.setDateOfBirth(updatedUser.getDateOfBirth());
+                    existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
                 if (updatedUser.getRsaId() != null)
-                    user.setRsaId(updatedUser.getRsaId());
+                    existingUser.setRsaId(updatedUser.getRsaId());
 
-                Constant.users.set(i, user);
-                break;
             }
-        }
+            userRepository.save(existingUser);
+        });
     }
 
     // // implements searchUsers method from UserService interface

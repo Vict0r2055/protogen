@@ -1,0 +1,134 @@
+openapi: 3.0.0
+info:
+  title: Car Rental Service API
+  description: API for managing cars, users, and reservations
+  version: 1.0.0
+
+paths:
+  /cars:
+    get:
+      summary: Get all cars
+      responses:
+        '200':
+          description: A list of cars
+          content:
+            application/json:
+              example:
+                - carId: 1
+                  make: "Toyota"
+                  model: "Corolla"
+                  year: 2021
+                  color: "White"
+                  // ... other properties
+    post:
+      summary: Create a new car
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarInput"
+      responses:
+        '201':
+          description: Car created successfully
+          content:
+            application/json:
+              example:
+                carId: 1
+                make: "Toyota"
+                model: "Corolla"
+                year: 2021
+                color: "White"
+                // ... other properties
+
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              example:
+                - id: 1
+                  firstName: "John"
+                  lastName: "Doe"
+                  // ... other properties
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              example:
+                id: 1
+                firstName: "John"
+                lastName: "Doe"
+                // ... other properties
+
+components:
+  schemas:
+    CarInput:
+      type: object
+      properties:
+        transmission:
+          type: string
+          description: The type of transmission the car has (e.g., manual, automatic)
+        make:
+          type: string
+          description: The car's manufacturer or brand
+        model:
+          type: string
+          description: The specific model name or number
+        year:
+          type: integer
+          format: int32
+          description: The year the car was manufactured
+        color:
+          type: string
+          description: The color of the car's exterior
+        engine:
+          type: string
+          description: Details about the car's engine
+        fuelType:
+          type: string
+          description: The type of fuel the car uses (e.g., gasoline, diesel, electric)
+        mileage:
+          type: integer
+          format: int32
+          description: The number of miles the car has traveled
+        vin:
+          type: string
+          description: A unique identifier assigned to the car (Vehicle Identification Number)
+        price:
+          type: number
+          format: double
+          description: The price of the car
+        ownerId:
+          type: integer
+          format: int32
+          description: The owner's unique identifier
+
+    UserInput:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: The user's first name
+        lastName:
+          type: string
+          description: The user's last name
+        dateOfBirth:
+          type: string
+          format: date
+          description: The date of birth of the user
+        rsaId:
+          type: string
+          description: The RSA ID (South African ID) of the user

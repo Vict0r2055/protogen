@@ -1,5 +1,6 @@
 package za.co.protogen.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.protogen.domain.Reservation;
 import za.co.protogen.core.ReservationService;
@@ -12,6 +13,7 @@ public class ReservationApiController {
 
     private final ReservationService reservationService;
 
+    @Autowired
     public ReservationApiController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
@@ -22,7 +24,7 @@ public class ReservationApiController {
     }
 
     @GetMapping("/{reservationId}")
-    public Reservation getReservationById(@PathVariable("reservationId") Long reservationId) {
+    public Reservation getReservationById(@PathVariable("reservationId") int reservationId) {
         return reservationService.getReservationById(reservationId);
     }
 
@@ -32,13 +34,13 @@ public class ReservationApiController {
     }
 
     @PutMapping("/{reservationId}")
-    public void updateReservation(@PathVariable("reservationId") Long reservationId,
+    public void updateReservation(@PathVariable("reservationId") int reservationId,
             @RequestBody Reservation updatedReservation) {
         reservationService.updateReservation(reservationId, updatedReservation);
     }
 
     @DeleteMapping("/{reservationId}")
-    public void removeReservation(@PathVariable("reservationId") Long reservationId) {
+    public void removeReservation(@PathVariable("reservationId") int reservationId) {
         reservationService.removeReservation(reservationId);
     }
 }

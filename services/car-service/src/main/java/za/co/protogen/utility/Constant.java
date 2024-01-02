@@ -21,7 +21,7 @@ public class Constant {
         car1.setVin("ABC123");
         car1.setPrice(25000);
         car1.setOwnerId(123);
-        car1.setFeatures(new ArrayList<>());
+        // car1.setFeatures(new ArrayList<>());
         cars.add(car1);
 
         Car car2 = new Car();
@@ -37,7 +37,7 @@ public class Constant {
         car2.setVin("XYZ789");
         car2.setPrice(22000);
         car2.setOwnerId(456);
-        car2.setFeatures(new ArrayList<>());
+        // car2.setFeatures(new ArrayList<>());
         cars.add(car2);
 
         Car car3 = new Car();
@@ -53,7 +53,7 @@ public class Constant {
         car3.setVin("XYZ987");
         car3.setPrice(22000);
         car3.setOwnerId(496);
-        car3.setFeatures(new ArrayList<>());
+        // car3.setFeatures(new ArrayList<>());
         cars.add(car3);
 
         // Add more cars as needed

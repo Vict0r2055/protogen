@@ -10,8 +10,12 @@
 package za.co.protogen.domain;
 
 import java.time.LocalDate;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "reservations")
 public class Reservation {
+    @Id
     private Long id;
     private Long userId;
     private Long carId;
@@ -24,9 +28,10 @@ public class Reservation {
     public Reservation() {
         // the default constructor
     }
-// parameterized constructor
+
+    // parameterized constructor
     public Reservation(Long id, Long userId, Long carId, LocalDate fromDate, LocalDate toDate,
-                       String pickUpLocation, String dropoffLocation) {
+            String pickUpLocation, String dropoffLocation) {
         this.id = id;
         this.userId = userId;
         this.carId = carId;
@@ -92,18 +97,20 @@ public class Reservation {
     public void setDropoffLocation(String dropoffLocation) {
         this.dropoffLocation = dropoffLocation;
     }
-    // this overrides default tooString for object it returns well formatted result easy to understand
+
+    // this overrides default tooString for object it returns well formatted result
+    // easy to understand
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Reservation\n")
-        .append("id=: ").append(id).append("\n")
-        .append("userId: ").append(userId).append("\n")
-        .append("carId: ").append(carId).append("\n")
-        .append("fromDate: ").append(fromDate).append("\n")
-        .append("toDate: ").append(toDate).append("\n")
-        .append("pickUpLocation: '").append(pickUpLocation).append("'\n")
-        .append("dropoffLocation: '").append(dropoffLocation).append("'\n");
+                .append("id=: ").append(id).append("\n")
+                .append("userId: ").append(userId).append("\n")
+                .append("carId: ").append(carId).append("\n")
+                .append("fromDate: ").append(fromDate).append("\n")
+                .append("toDate: ").append(toDate).append("\n")
+                .append("pickUpLocation: '").append(pickUpLocation).append("'\n")
+                .append("dropoffLocation: '").append(dropoffLocation).append("'\n");
         return sb.toString();
     }
 }

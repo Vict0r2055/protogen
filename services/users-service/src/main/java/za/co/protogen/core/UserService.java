@@ -8,13 +8,13 @@ public interface UserService {
     // interface's methodds
     void addUser(User user);
 
-    void removeUser(Long userId);
+    void removeUser(int Id);
 
-    User getUserById(Long userId);
+    User getUserById(int Id);
 
     List<User> getAllUsers();
 
-    void updateUser(Long userId, User updatedUser);
+    void updateUser(int Id, User updatedUser);
 
     // List<User> searchUsers(String firstName, String lastName, LocalDate
     // dateOfBirth, String rsaId);

@@ -4,17 +4,24 @@
  */
 package za.co.protogen.domain;
 
-import java.util.List;
-
 /**
  *
  * @author luyas
  */
+
+// import java.util.List;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "cars")
 public class Car {
 
+   @Id
+   private int carId;
    private String transmission;
    private String make;
    private String model;
+   @Column(name = "manufacturingYear")
    private int year;
    private String color;
    private String engine;
@@ -23,8 +30,7 @@ public class Car {
    private String vin;
    private double price;
    private int ownerId;
-   private List<String> features;
-   private int carId;
+   // private List<String> features;
 
    public Car() {
    }
@@ -125,9 +131,9 @@ public class Car {
       this.ownerId = var1;
    }
 
-   public void setFeatures(List<String> var1) {
-      this.features = var1;
-   }
+   // public void setFeatures(List<String> var1) {
+   // this.features = var1;
+   // }
 
    // i made this to override the toString method to return more understandable
    // code easy to read when running the application main method
@@ -147,7 +153,7 @@ public class Car {
       sb.append("VIN: ").append(vin).append("\n");
       sb.append("Price: ").append(price).append("\n");
       sb.append("Owner ID: ").append(ownerId).append("\n");
-      sb.append("Features: ").append(features).append("\n");
+      // sb.append("Features: ").append(features).append("\n");
 
       return sb.toString();
    }

@@ -31,16 +31,4 @@ public interface CarService {
 
     void updateCar(int carId, Car updatedCar);
 
-    double calculateAverageMileage();
-
-    Car findCheapestCar();
-
-    Car findMostExpensiveCar();
-
-    Car findNewestCar();
-
-    Car findOldestCar();
-
-    List<Car> searchCars(String make, String model, double minPrice, double maxPrice);
-
 }

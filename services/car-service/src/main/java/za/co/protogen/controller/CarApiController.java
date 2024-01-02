@@ -1,9 +1,9 @@
 package za.co.protogen.controller;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import za.co.protogen.domain.Car;
 import za.co.protogen.core.CarService;
+import za.co.protogen.domain.Car;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ public class CarApiController {
 
     private final CarService carService;
 
+    @Autowired
     public CarApiController(CarService carService) {
         this.carService = carService;
     }
@@ -29,17 +30,18 @@ public class CarApiController {
 
     @PostMapping
     public void addCar(@RequestBody Car car) {
+        System.out.println("Received Car JSON: " + car.toString());
         carService.addCar(car);
-    }
-
-    @PutMapping("/{carId}")
-    public ResponseEntity<Void> updateCar(@PathVariable("carId") int carId, @RequestBody Car updatedCar) {
-        carService.updateCar(carId, updatedCar);
-        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{carId}")
     public void removeCar(@PathVariable("carId") int carId) {
         carService.removeCar(carId);
     }
+
+    @PutMapping("/{carId}")
+    public void updateCar(@PathVariable("carId") int carId, @RequestBody Car updatedCar) {
+        carService.updateCar(carId, updatedCar);
+    }
+
 }

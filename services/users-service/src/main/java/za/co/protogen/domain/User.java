@@ -2,9 +2,13 @@ package za.co.protogen.domain;
 
 //  imports
 import java.time.LocalDate;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "users")
 public class User {
-    private Long id;
+    @Id
+    private int id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
@@ -15,7 +19,7 @@ public class User {
 
     }
 
-    public User(Long id, String firstName, String lastName, LocalDate dateOfBirth, String rsaId) {
+    public User(int id, String firstName, String lastName, LocalDate dateOfBirth, String rsaId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,11 +28,11 @@ public class User {
     }
 
     // Getters and setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

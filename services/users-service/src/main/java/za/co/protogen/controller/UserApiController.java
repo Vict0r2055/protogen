@@ -20,9 +20,9 @@ public class UserApiController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{userId}")
-    public User getUserById(@PathVariable("userId") Long userId) {
-        return userService.getUserById(userId);
+    @GetMapping("/{Id}")
+    public User getUserById(@PathVariable("Id") int Id) {
+        return userService.getUserById(Id);
     }
 
     @PostMapping
@@ -30,14 +30,14 @@ public class UserApiController {
         userService.addUser(user);
     }
 
-    @PutMapping("/{userId}")
-    public void updateUser(@PathVariable("userId") Long userId, @RequestBody User user) {
-        userService.updateUser(userId, user);
+    @PutMapping("/{Id}")
+    public void updateUser(@PathVariable("Id") int Id, @RequestBody User user) {
+        userService.updateUser(Id, user);
     }
 
-    @DeleteMapping("/{userId}")
-    public void removeUser(@PathVariable("userId") Long userId) {
-        userService.removeUser(userId);
+    @DeleteMapping("/{Id}")
+    public void removeUser(@PathVariable("Id") int Id) {
+        userService.removeUser(Id);
     }
 
 }

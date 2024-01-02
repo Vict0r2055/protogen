@@ -7,11 +7,13 @@
 package za.co.protogen.core.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.time.LocalDate;
+import java.util.Optional;
+// import java.util.stream.Collectors;
+// import java.time.LocalDate;
 import za.co.protogen.core.ReservationService;
 import za.co.protogen.domain.Reservation;
-import za.co.protogen.utility.Constant;
+import za.co.protogen.persistence.repository.ReservationRepository;
+// import za.co.protogen.utility.Constant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +25,12 @@ import org.springframework.web.client.RestTemplate;
 public class ReservationServiceImpl implements ReservationService {
 
     private final RestTemplate restTemplate;
+    private final ReservationRepository reservationRepository;
 
     @Autowired
-    public ReservationServiceImpl(RestTemplate restTemplate) {
+    public ReservationServiceImpl(RestTemplate restTemplate, ReservationRepository reservationRepository) {
         this.restTemplate = restTemplate;
+        this.reservationRepository = reservationRepository;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class ReservationServiceImpl implements ReservationService {
             System.out.println("user not found");
         }
         if (user != false && car != false) {
-            Constant.reservations.add(reservation);
+            reservationRepository.save(reservation);
 
         }
         ;
@@ -62,50 +66,60 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void removeReservation(Long reservationId) {
-        Constant.reservations.removeIf(r -> {
-            Long id = r.getId();
-            return id != null && id.equals(reservationId);
-        });
+    public void removeReservation(int reservationId) {
+        reservationRepository.deleteById(reservationId);
     }
 
     @Override
-    public Reservation getReservationById(Long reservationId) {
-        return Constant.reservations.stream()
-                .filter(r -> r.getId().equals(reservationId))
-                .findFirst()
-                .orElse(null);
+    public Reservation getReservationById(int reservationId) {
+        Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+        return optionalReservation.orElse(null);
     }
 
     @Override
     public List<Reservation> getAllReservations() {
-        return Constant.reservations;
+        return reservationRepository.findAll();
     }
 
     @Override
-    public void updateReservation(Long reservationId, Reservation updatedReservation) {
-        Reservation existingReservation = getReservationById(reservationId);
-        if (existingReservation != null) {
-            // Update the existing reservation with the fields of the updated reservation
-            existingReservation.setUserId(updatedReservation.getUserId());
-            existingReservation.setCarId(updatedReservation.getCarId());
-            existingReservation.setFromDate(updatedReservation.getFromDate());
-            existingReservation.setToDate(updatedReservation.getToDate());
-            existingReservation.setPickUpLocation(updatedReservation.getPickUpLocation());
-            existingReservation.setDropoffLocation(updatedReservation.getDropoffLocation());
-        }
+    public void updateReservation(int reservationId, Reservation updatedReservation) {
+        Optional<Reservation> optionalExistingReservation = reservationRepository.findById(reservationId);
+        optionalExistingReservation.ifPresent(existingReservation -> {
+            if (updatedReservation.getUserId() != null) {
+                existingReservation.setUserId(updatedReservation.getUserId());
+            }
+            if (updatedReservation.getCarId() != null) {
+                existingReservation.setCarId(updatedReservation.getCarId());
+            }
+            if (updatedReservation.getFromDate() != null) {
+                existingReservation.setFromDate(updatedReservation.getFromDate());
+            }
+            if (updatedReservation.getToDate() != null) {
+                existingReservation.setToDate(updatedReservation.getToDate());
+            }
+            if (updatedReservation.getPickUpLocation() != null) {
+                existingReservation.setPickUpLocation(updatedReservation.getPickUpLocation());
+            }
+            if (updatedReservation.getDropoffLocation() != null) {
+                existingReservation.setDropoffLocation(updatedReservation.getDropoffLocation());
+            }
 
+            reservationRepository.save(existingReservation);
+        });
     }
 
-    @Override
-    public List<Reservation> searchReservations(Long userId, Long carId, LocalDate fromDate, LocalDate toDate) {
+    // @Override
+    // public List<Reservation> searchReservations(int userId, int carId, LocalDate
+    // fromDate, LocalDate toDate) {
 
-        return Constant.reservations.stream()
-                .filter(r -> (userId == null || r.getUserId().equals(userId)) &&
-                        (carId == null || r.getCarId().equals(carId)) &&
-                        (fromDate == null || r.getFromDate().isEqual(fromDate) || r.getFromDate().isAfter(fromDate)) &&
-                        (toDate == null || r.getToDate().isEqual(toDate) || r.getToDate().isBefore(toDate)))
-                .collect(Collectors.toList());
-    }
+    // return Constant.reservations.stream()
+    // .filter(r -> (userId == null || r.getUserId().equals(userId)) &&
+    // (carId == null || r.getCarId().equals(carId)) &&
+    // (fromDate == null || r.getFromDate().isEqual(fromDate) ||
+    // r.getFromDate().isAfter(fromDate)) &&
+    // (toDate == null || r.getToDate().isEqual(toDate) ||
+    // r.getToDate().isBefore(toDate)))
+    // .collect(Collectors.toList());
+    // }
 
 }
