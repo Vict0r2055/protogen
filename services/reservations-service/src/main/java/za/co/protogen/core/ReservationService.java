@@ -6,22 +6,21 @@ package za.co.protogen.core;
 
 // imports
 import java.util.List;
-// import java.time.LocalDate;
-import za.co.protogen.domain.Reservation;
+import java.time.LocalDate;
+import za.co.protogen.persistence.models.ReservationEntity;
 
 // interface for reservation object
 public interface ReservationService {
-    void addReservation(Reservation reservation);
+    void addReservation(ReservationEntity reservation);
 
-    void removeReservation(int reservationId);
+    void removeReservation(Long reservationId);
 
-    Reservation getReservationById(int reservationId);
+    ReservationEntity getReservationById(Long reservationId);
 
-    List<Reservation> getAllReservations();
+    List<ReservationEntity> getAllReservations();
 
-    void updateReservation(int reservationId, Reservation updatedReservation);
+    void updateReservation(Long reservationId, ReservationEntity updatedReservation);
 
-    // List<Reservation> searchReservations(int userId, int carId, LocalDate
-    // fromDate, LocalDate toDate);
+    List<ReservationEntity> searchReservations(Long userId, Long carId, LocalDate fromDate, LocalDate toDate);
 
 }

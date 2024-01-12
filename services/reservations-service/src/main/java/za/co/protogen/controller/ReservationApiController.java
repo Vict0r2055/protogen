@@ -2,8 +2,8 @@ package za.co.protogen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import za.co.protogen.domain.Reservation;
 import za.co.protogen.core.ReservationService;
+import za.co.protogen.persistence.models.ReservationEntity;
 
 import java.util.List;
 
@@ -19,28 +19,28 @@ public class ReservationApiController {
     }
 
     @GetMapping
-    public List<Reservation> getAllReservations() {
+    public List<ReservationEntity> getAllReservations() {
         return reservationService.getAllReservations();
     }
 
     @GetMapping("/{reservationId}")
-    public Reservation getReservationById(@PathVariable("reservationId") int reservationId) {
+    public ReservationEntity getReservationById(@PathVariable("reservationId") Long reservationId) {
         return reservationService.getReservationById(reservationId);
     }
 
     @PostMapping
-    public void addReservation(@RequestBody Reservation reservation) {
+    public void addReservation(@RequestBody ReservationEntity reservation) {
         reservationService.addReservation(reservation);
     }
 
     @PutMapping("/{reservationId}")
-    public void updateReservation(@PathVariable("reservationId") int reservationId,
-            @RequestBody Reservation updatedReservation) {
+    public void updateReservation(@PathVariable("reservationId") Long reservationId,
+            @RequestBody ReservationEntity updatedReservation) {
         reservationService.updateReservation(reservationId, updatedReservation);
     }
 
     @DeleteMapping("/{reservationId}")
-    public void removeReservation(@PathVariable("reservationId") int reservationId) {
+    public void removeReservation(@PathVariable("reservationId") Long reservationId) {
         reservationService.removeReservation(reservationId);
     }
 }

@@ -9,7 +9,7 @@ public class Constant {
     static {
         // mock data
         Car car1 = new Car();
-        car1.setCarId(1);
+        car1.setCarId(1L);
         car1.setMake("Toyota");
         car1.setModel("Corolla");
         car1.setYear(2021);
@@ -25,7 +25,7 @@ public class Constant {
         cars.add(car1);
 
         Car car2 = new Car();
-        car2.setCarId(2);
+        car2.setCarId(2L);
         car2.setMake("Honda");
         car2.setModel("Civic");
         car2.setYear(2020);
@@ -41,7 +41,7 @@ public class Constant {
         cars.add(car2);
 
         Car car3 = new Car();
-        car3.setCarId(3);
+        car3.setCarId(3L);
         car3.setMake("Honda");
         car3.setModel("Civic");
         car3.setYear(2023);

@@ -1,7 +1,8 @@
 package za.co.protogen.controller;
 
 import org.springframework.web.bind.annotation.*;
-import za.co.protogen.domain.User;
+// import za.co.protogen.domain.User;
+import za.co.protogen.persistence.models.UserEntity;
 import za.co.protogen.core.UserService;
 import java.util.List;
 
@@ -16,27 +17,27 @@ public class UserApiController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{Id}")
-    public User getUserById(@PathVariable("Id") int Id) {
+    public UserEntity getUserById(@PathVariable("Id") Long Id) {
         return userService.getUserById(Id);
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody UserEntity user) {
         userService.addUser(user);
     }
 
     @PutMapping("/{Id}")
-    public void updateUser(@PathVariable("Id") int Id, @RequestBody User user) {
+    public void updateUser(@PathVariable("Id") Long Id, @RequestBody UserEntity user) {
         userService.updateUser(Id, user);
     }
 
     @DeleteMapping("/{Id}")
-    public void removeUser(@PathVariable("Id") int Id) {
+    public void removeUser(@PathVariable("Id") Long Id) {
         userService.removeUser(Id);
     }
 

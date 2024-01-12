@@ -3,8 +3,7 @@ package za.co.protogen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.protogen.core.CarService;
-import za.co.protogen.domain.Car;
-
+import za.co.protogen.persistence.models.CarEntity;
 import java.util.List;
 
 @RestController
@@ -19,28 +18,28 @@ public class CarApiController {
     }
 
     @GetMapping
-    public List<Car> getAllCars() {
+    public List<CarEntity> getAllCars() {
         return carService.getAllCars();
     }
 
     @GetMapping("/{carId}")
-    public Car getCarById(@PathVariable("carId") int carId) {
+    public CarEntity getCarById(@PathVariable("carId") Long carId) {
         return carService.getCarById(carId);
     }
 
     @PostMapping
-    public void addCar(@RequestBody Car car) {
+    public void addCar(@RequestBody CarEntity car) {
         System.out.println("Received Car JSON: " + car.toString());
         carService.addCar(car);
     }
 
     @DeleteMapping("/{carId}")
-    public void removeCar(@PathVariable("carId") int carId) {
+    public void removeCar(@PathVariable("carId") Long carId) {
         carService.removeCar(carId);
     }
 
     @PutMapping("/{carId}")
-    public void updateCar(@PathVariable("carId") int carId, @RequestBody Car updatedCar) {
+    public void updateCar(@PathVariable("carId") Long carId, @RequestBody CarEntity updatedCar) {
         carService.updateCar(carId, updatedCar);
     }
 

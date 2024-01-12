@@ -4,8 +4,9 @@
  */
 package za.co.protogen.core;
 
-import za.co.protogen.domain.Car;
+// import za.co.protogen.domain.Car;
 import java.util.List;
+import za.co.protogen.persistence.models.CarEntity;
 
 /**
  *
@@ -15,20 +16,20 @@ import java.util.List;
 // defined an interface to ease creation of an object
 
 public interface CarService {
-    void addCar(Car car);
+    void addCar(CarEntity car);
 
-    void removeCar(int carId);
+    void removeCar(Long carId);
 
-    Car getCarById(int carId);
+    CarEntity getCarById(Long carId);
 
-    List<Car> getAllCars();
+    List<CarEntity> getAllCars();
 
-    List<Car> getCarsByMake(String make);
+    List<CarEntity> getCarsByMake(String make);
 
-    List<Car> getCarsByYear(int year);
+    List<CarEntity> getCarsByYear(int year);
 
-    List<Car> getCarsByColor(String color);
+    List<CarEntity> getCarsByColor(String color);
 
-    void updateCar(int carId, Car updatedCar);
+    void updateCar(Long carId, CarEntity updatedCar);
 
 }

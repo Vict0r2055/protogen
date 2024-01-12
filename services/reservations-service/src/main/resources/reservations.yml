@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: Reservation API
+  description: API for managing reservations
+  version: 1.0.0
+
+paths:
+  /reservations:
+    get:
+      summary: Get a list of reservations
+      operationId: getAllReservations
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                - id: 1
+                  userId: 123
+                  carId: 456
+                  fromDate: "2022-01-01"
+                  toDate: "2022-01-05"
+                  pickUpLocation: "Location A"
+                  dropoffLocation: "Location B"
+
+    post:
+      summary: Add a new reservation
+      operationId: addReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+            example:
+              userId: 789
+              carId: 101
+              fromDate: "2022-02-01"
+              toDate: "2022-02-05"
+              pickUpLocation: "Location C"
+              dropoffLocation: "Location D"
+
+      responses:
+        '201':
+          description: Reservation added successfully
+        '400':
+          description: Bad request
+
+  /reservations/{reservationId}:
+    parameters:
+      - name: reservationId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the reservation
+
+    get:
+      summary: Get reservation details by ID
+      operationId: getReservationById
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                id: 1
+                userId: 123
+                carId: 456
+                fromDate: "2022-01-01"
+                toDate: "2022-01-05"
+                pickUpLocation: "Location A"
+                dropoffLocation: "Location B"
+
+    put:
+      summary: Update reservation details by ID
+      operationId: updateReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+            example:
+              userId: 789
+              carId: 101
+              fromDate: "2022-02-01"
+              toDate: "2022-02-10"
+              pickUpLocation: "Location C"
+              dropoffLocation: "Location D"
+
+      responses:
+        '200':
+          description: Reservation updated successfully
+        '400':
+          description: Bad request
+
+    delete:
+      summary: Delete reservation by ID
+      operationId: removeReservation
+      responses:
+        '204':
+          description: Reservation deleted successfully
+        '404':
+          description: Reservation not found
+
+components:
+  schemas:
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        carId:
+          type: integer
+        fromDate:
+          type: string
+          format: date
+        toDate:
+          type: string
+          format: date
+        pickUpLocation:
+          type: string
+        dropoffLocation:
+          type: string

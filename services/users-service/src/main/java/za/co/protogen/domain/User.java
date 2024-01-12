@@ -2,7 +2,7 @@ package za.co.protogen.domain;
 
 //  imports
 import java.time.LocalDate;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")

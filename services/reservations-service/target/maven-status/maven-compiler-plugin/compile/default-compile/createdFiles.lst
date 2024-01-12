@@ -1,9 +1,1 @@
-za\co\protogen\Application.class
-za\co\protogen\controller\ReservationApiController.class
-za\co\protogen\core\ReservationService.class
-za\co\protogen\config\RestClientConfig.class
-za\co\protogen\core\impl\ReservationServiceImpl.class
-za\co\protogen\utility\Constant.class
-za\co\protogen\adapter\Mappers.class
-za\co\protogen\persistence\repository\ReservationRepository.class
 za\co\protogen\domain\Reservation.class

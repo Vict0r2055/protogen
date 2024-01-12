@@ -1,0 +1,5 @@
+src/main/java/com/baeldung/openapi/api/ApiUtil.java
+src/main/java/com/baeldung/openapi/api/ReservationsApi.java
+src/main/java/com/baeldung/openapi/api/ReservationsApiController.java
+src/main/java/com/baeldung/openapi/api/ReservationsApiDelegate.java
+src/main/java/com/baeldung/openapi/model/Reservation.java

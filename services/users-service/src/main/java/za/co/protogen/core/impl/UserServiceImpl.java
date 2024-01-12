@@ -2,12 +2,14 @@ package za.co.protogen.core.impl;
 
 // imports
 import za.co.protogen.core.UserService;
-import za.co.protogen.domain.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import za.co.protogen.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import za.co.protogen.persistence.models.UserEntity;
+import java.time.LocalDate;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,33 +23,33 @@ public class UserServiceImpl implements UserService {
 
     // implements addUser method from UserService interface
     @Override
-    public void addUser(User user) {
+    public void addUser(UserEntity user) {
         userRepository.save(user);
     }
 
     // implenments removeUser method from UserService interface
     @Override
-    public void removeUser(int Id) {
+    public void removeUser(Long Id) {
         userRepository.deleteById(Id);
     }
 
     // implements getUserById method from UserService interface
     @Override
-    public User getUserById(int Id) {
-        Optional<User> optionalUser = userRepository.findById(Id);
+    public UserEntity getUserById(Long Id) {
+        Optional<UserEntity> optionalUser = userRepository.findById(Id);
         return optionalUser.orElse(null);
 
     }
 
     // implements getAllUsers method from UserService interface
     @Override
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public void updateUser(int Id, User updatedUser) {
-        Optional<User> optionalExistingUser = userRepository.findById(Id);
+    public void updateUser(Long Id, UserEntity updatedUser) {
+        Optional<UserEntity> optionalExistingUser = userRepository.findById(Id);
         optionalExistingUser.ifPresent(existingUser -> {
             if (existingUser.getId() == Id) {
                 // Update only the provided attributes
@@ -65,19 +67,21 @@ public class UserServiceImpl implements UserService {
         });
     }
 
-    // // implements searchUsers method from UserService interface
-    // @Override
-    // public List<User> searchUsers(String firstName, String lastName, LocalDate
-    // dateOfBirth, String rsaId) {
-    // List<User> searchResults = new ArrayList<>();
-    // for (User user : Constant.users) {
-    // if ((firstName == null || firstName.equalsIgnoreCase(user.getFirstName())) &&
-    // (lastName == null || lastName.equalsIgnoreCase(user.getLastName())) &&
-    // (dateOfBirth == null || dateOfBirth.equals(user.getDateOfBirth())) &&
-    // (rsaId == null || rsaId.equals(user.getRsaId()))) {
-    // searchResults.add(user);
-    // }
-    // }
-    // return searchResults;
-    // }
+    // implements searchUsers method from UserService interface
+    @Override
+    public List<UserEntity> searchUsers(String firstName, String lastName, LocalDate dateOfBirth, String rsaId) {
+        List<UserEntity> usersList = userRepository.findAll();
+        List<UserEntity> searchResults = new ArrayList<>();
+
+        for (UserEntity userEntity : usersList) {
+            if ((firstName == null || firstName.equalsIgnoreCase(userEntity.getFirstName())) &&
+                    (lastName == null || lastName.equalsIgnoreCase(userEntity.getLastName())) &&
+                    (dateOfBirth == null || dateOfBirth.equals(userEntity.getDateOfBirth())) &&
+                    (rsaId == null || rsaId.equals(userEntity.getRsaId()))) {
+                searchResults.add(userEntity);
+            }
+        }
+
+        return searchResults;
+    }
 }

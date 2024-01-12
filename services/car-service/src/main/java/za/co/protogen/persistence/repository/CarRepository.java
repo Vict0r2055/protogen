@@ -2,17 +2,18 @@ package za.co.protogen.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.co.protogen.domain.Car;
+import za.co.protogen.persistence.models.CarEntity;
+// import za.co.protogen.domain.Car;
 
 import java.util.List;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, Integer> {
+public interface CarRepository extends JpaRepository<CarEntity, Long> {
 
-    List<Car> findByMakeIgnoreCase(String make);
+    List<CarEntity> findByMakeIgnoreCase(String make);
 
-    List<Car> findByYear(int year);
+    List<CarEntity> findByYear(int year);
 
-    List<Car> findByColorIgnoreCase(String color);
+    List<CarEntity> findByColorIgnoreCase(String color);
 
 }

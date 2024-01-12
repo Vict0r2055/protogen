@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: User API
+  description: API for managing user information
+  version: 1.0.0
+
+paths:
+  /users:
+    get:
+      summary: Get a list of users
+      operationId: getUsers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                - id: 1
+                  firstName: "John"
+                  lastName: "Doe"
+                  dateOfBirth: "1990-01-01"
+                  rsaId: "1234567890123"
+
+    post:
+      summary: Add a new user
+      operationId: addUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              firstName: "Jane"
+              lastName: "Doe"
+              dateOfBirth: "1995-02-15"
+              rsaId: "9876543210987"
+
+      responses:
+        '201':
+          description: User added successfully
+        '400':
+          description: Bad request
+
+  /users/{userId}:
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the user
+
+    get:
+      summary: Get user details by ID
+      description: Returns detailed information about a specific user.
+      operationId: getUserById
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                id: 1
+                firstName: "John"
+                lastName: "Doe"
+                dateOfBirth: "1990-01-01"
+                rsaId: "1234567890123"
+
+    put:
+      summary: Update user details by ID
+      description: Updates an existing user with new data.
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              firstName: "John"
+              lastName: "Doe"
+              dateOfBirth: "1990-01-01"
+              rsaId: "1234567890123"
+
+      responses:
+        '200':
+          description: User updated successfully
+        '400':
+          description: Bad request
+
+    delete:
+      summary: Delete user by ID
+      description: Deletes a user from the system. Note that this is not reversible!
+      operationId: deleteUser
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        rsaId:
+          type: string

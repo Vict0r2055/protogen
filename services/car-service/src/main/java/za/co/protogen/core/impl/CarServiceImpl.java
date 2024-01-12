@@ -1,10 +1,5 @@
-/**
- *
- * @author luyas
- */
-
 /*
- * this is the implementation of the CarService interface which overrides
+ * This is the implementation of the CarService interface which overrides
  * methods in the interface
  */
 package za.co.protogen.core.impl;
@@ -12,13 +7,14 @@ package za.co.protogen.core.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.protogen.core.CarService;
-import za.co.protogen.domain.Car;
 import za.co.protogen.persistence.repository.CarRepository;
+import za.co.protogen.persistence.models.CarEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
@@ -29,44 +25,44 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addCar(Car car) {
+    public void addCar(CarEntity car) {
         carRepository.save(car);
     }
 
     @Override
-    public void removeCar(int carId) {
+    public void removeCar(Long carId) {
         carRepository.deleteById(carId);
     }
 
     @Override
-    public Car getCarById(int carId) {
-        Optional<Car> optionalCar = carRepository.findById(carId);
+    public CarEntity getCarById(Long carId) {
+        Optional<CarEntity> optionalCar = carRepository.findById(carId);
         return optionalCar.orElse(null);
     }
 
     @Override
-    public List<Car> getAllCars() {
+    public List<CarEntity> getAllCars() {
         return carRepository.findAll();
     }
 
     @Override
-    public List<Car> getCarsByMake(String make) {
+    public List<CarEntity> getCarsByMake(String make) {
         return carRepository.findByMakeIgnoreCase(make);
     }
 
     @Override
-    public List<Car> getCarsByYear(int year) {
+    public List<CarEntity> getCarsByYear(int year) {
         return carRepository.findByYear(year);
     }
 
     @Override
-    public List<Car> getCarsByColor(String color) {
+    public List<CarEntity> getCarsByColor(String color) {
         return carRepository.findByColorIgnoreCase(color);
     }
 
     @Override
-    public void updateCar(int carId, Car updatedCar) {
-        Optional<Car> optionalExistingCar = carRepository.findById(carId);
+    public void updateCar(Long carId, CarEntity updatedCar) {
+        Optional<CarEntity> optionalExistingCar = carRepository.findById(carId);
         optionalExistingCar.ifPresent(existingCar -> {
             if (existingCar.getCarId() == carId) {
                 if (updatedCar.getTransmission() != null && !updatedCar.getTransmission().isEmpty()) {
@@ -99,6 +95,9 @@ public class CarServiceImpl implements CarService {
 
                 if (updatedCar.getOwnerId() > 0) {
                     existingCar.setOwnerId(updatedCar.getOwnerId());
+                }
+                if (updatedCar.getVin() != null && updatedCar.getVin().isEmpty()) {
+                    existingCar.setVin(updatedCar.getVin());
                 }
 
             }

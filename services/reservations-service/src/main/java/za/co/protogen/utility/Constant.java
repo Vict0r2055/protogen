@@ -1,9 +1,11 @@
 package za.co.protogen.utility;
 
-import za.co.protogen.domain.Reservation;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import za.co.protogen.domain.models.Reservation;
+
 public class Constant {
 
     public static List<Reservation> reservations = new ArrayList<>();
@@ -27,6 +29,6 @@ public class Constant {
         reservation2.setPickUpLocation("London");
         reservation2.setDropoffLocation("Paris");
         reservations.add(reservation2);
-      
+
     }
 }

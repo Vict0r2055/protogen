@@ -8,13 +8,11 @@ package za.co.protogen.core.impl;
 
 import java.util.List;
 import java.util.Optional;
-// import java.util.stream.Collectors;
-// import java.time.LocalDate;
+import java.util.stream.Collectors;
+import java.time.LocalDate;
 import za.co.protogen.core.ReservationService;
-import za.co.protogen.domain.Reservation;
+import za.co.protogen.persistence.models.ReservationEntity;
 import za.co.protogen.persistence.repository.ReservationRepository;
-// import za.co.protogen.utility.Constant;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +32,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void addReservation(Reservation reservation) {
+    public void addReservation(ReservationEntity reservation) {
         boolean user = true;
         boolean car = true;
 
@@ -66,29 +64,28 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void removeReservation(int reservationId) {
+    public void removeReservation(Long reservationId) {
         reservationRepository.deleteById(reservationId);
     }
 
     @Override
-    public Reservation getReservationById(int reservationId) {
-        Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+    public ReservationEntity getReservationById(Long reservationId) {
+        Optional<ReservationEntity> optionalReservation = reservationRepository.findById(reservationId);
         return optionalReservation.orElse(null);
     }
 
     @Override
-    public List<Reservation> getAllReservations() {
+    public List<ReservationEntity> getAllReservations() {
         return reservationRepository.findAll();
     }
 
     @Override
-    public void updateReservation(int reservationId, Reservation updatedReservation) {
-        Optional<Reservation> optionalExistingReservation = reservationRepository.findById(reservationId);
+    public void updateReservation(Long reservationId, ReservationEntity updatedReservation) {
+        Optional<ReservationEntity> optionalExistingReservation = reservationRepository.findById(reservationId);
         optionalExistingReservation.ifPresent(existingReservation -> {
-            if (updatedReservation.getUserId() != null) {
-                existingReservation.setUserId(updatedReservation.getUserId());
-            }
+
             if (updatedReservation.getCarId() != null) {
+                // CHANGING CAR
                 existingReservation.setCarId(updatedReservation.getCarId());
             }
             if (updatedReservation.getFromDate() != null) {
@@ -108,18 +105,18 @@ public class ReservationServiceImpl implements ReservationService {
         });
     }
 
-    // @Override
-    // public List<Reservation> searchReservations(int userId, int carId, LocalDate
-    // fromDate, LocalDate toDate) {
-
-    // return Constant.reservations.stream()
-    // .filter(r -> (userId == null || r.getUserId().equals(userId)) &&
-    // (carId == null || r.getCarId().equals(carId)) &&
-    // (fromDate == null || r.getFromDate().isEqual(fromDate) ||
-    // r.getFromDate().isAfter(fromDate)) &&
-    // (toDate == null || r.getToDate().isEqual(toDate) ||
-    // r.getToDate().isBefore(toDate)))
-    // .collect(Collectors.toList());
-    // }
+    @Override
+    public List<ReservationEntity> searchReservations(Long userId, Long carId, LocalDate fromDate, LocalDate toDate) {
+        List<ReservationEntity> reservatiionsList = reservationRepository.findAll();
+        return reservatiionsList.stream()
+                .filter(r -> (userId < 0 || r.getUserId().equals(userId)) &&
+                        (carId < 0 || r.getCarId().equals(carId)) &&
+                        (fromDate == null || r.getFromDate().isEqual(fromDate) ||
+                                r.getFromDate().isAfter(fromDate))
+                        &&
+                        (toDate == null || r.getToDate().isEqual(toDate) ||
+                                r.getToDate().isBefore(toDate)))
+                .collect(Collectors.toList());
+    }
 
 }

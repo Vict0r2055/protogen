@@ -1,21 +1,21 @@
 package za.co.protogen.core;
 
 import java.util.List;
-// import java.time.LocalDate;
-import za.co.protogen.domain.User;
+import java.time.LocalDate;
+// import za.co.protogen.domain.User;
+import za.co.protogen.persistence.models.UserEntity;
 
 public interface UserService {
     // interface's methodds
-    void addUser(User user);
+    void addUser(UserEntity user);
 
-    void removeUser(int Id);
+    void removeUser(Long Id);
 
-    User getUserById(int Id);
+    UserEntity getUserById(Long Id);
 
-    List<User> getAllUsers();
+    List<UserEntity> getAllUsers();
 
-    void updateUser(int Id, User updatedUser);
+    void updateUser(Long Id, UserEntity updatedUser);
 
-    // List<User> searchUsers(String firstName, String lastName, LocalDate
-    // dateOfBirth, String rsaId);
+    List<UserEntity> searchUsers(String firstName, String lastName, LocalDate dateOfBirth, String rsaId);
 }
