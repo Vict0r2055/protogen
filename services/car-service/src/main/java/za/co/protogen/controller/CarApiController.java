@@ -3,8 +3,10 @@ package za.co.protogen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.protogen.core.CarService;
+import za.co.protogen.domain.models.CarDomain;
 import za.co.protogen.persistence.models.CarEntity;
 import java.util.List;
+import za.co.protogen.controller.models.CarDTO;
 
 @RestController
 @RequestMapping("/cars")
@@ -28,7 +30,7 @@ public class CarApiController {
     }
 
     @PostMapping
-    public void addCar(@RequestBody CarEntity car) {
+    public void addCar(@RequestBody CarDTO car) {
         System.out.println("Received Car JSON: " + car.toString());
         carService.addCar(car);
     }

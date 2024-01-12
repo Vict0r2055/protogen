@@ -7,9 +7,11 @@ package za.co.protogen.core.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.protogen.core.CarService;
+import za.co.protogen.domain.models.CarDomain;
 import za.co.protogen.persistence.repository.CarRepository;
 import za.co.protogen.persistence.models.CarEntity;
-
+import za.co.protogen.adapter.CarMappers;
+import za.co.protogen.controller.models.CarDTO;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +27,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addCar(CarEntity car) {
-        carRepository.save(car);
+    public void addCar(CarDTO carDTO) {
+        CarEntity carEntity = CarMappers.INSTANCE.populateCarEntity(carDTO);
+        carRepository.save(carEntity);
     }
 
     @Override

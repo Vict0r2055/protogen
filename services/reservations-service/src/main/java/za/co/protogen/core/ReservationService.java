@@ -8,10 +8,11 @@ package za.co.protogen.core;
 import java.util.List;
 import java.time.LocalDate;
 import za.co.protogen.persistence.models.ReservationEntity;
+import za.co.protogen.controller.models.ReservationDTO;
 
 // interface for reservation object
 public interface ReservationService {
-    void addReservation(ReservationEntity reservation);
+    void addReservation(ReservationDTO reservationDTO);
 
     void removeReservation(Long reservationId);
 

@@ -19,6 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import za.co.protogen.adapter.ReservationMappers;
+import za.co.protogen.controller.models.ReservationDTO;
+
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
@@ -32,10 +35,10 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void addReservation(ReservationEntity reservation) {
+    public void addReservation(ReservationDTO reservationDTO) {
         boolean user = true;
         boolean car = true;
-
+        ReservationEntity reservation = ReservationMappers.INSTANCE.populateResrvationEntity(reservationDTO);
         // Verify car existence
         ResponseEntity<Object> carResponse = restTemplate
                 .getForEntity("http://localhost:9102/cars/" + reservation.getCarId(), Object.class);
@@ -56,6 +59,7 @@ public class ReservationServiceImpl implements ReservationService {
             System.out.println("user not found");
         }
         if (user != false && car != false) {
+
             reservationRepository.save(reservation);
 
         }

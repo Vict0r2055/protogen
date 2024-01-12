@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 /**
  * Car
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-12T02:42:47.824164200+02:00[Africa/Johannesburg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-12T19:47:08.187410200+02:00[Africa/Johannesburg]")
 public class Car   {
   @JsonProperty("make")
   private String make;

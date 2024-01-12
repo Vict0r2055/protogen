@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.protogen.core.ReservationService;
 import za.co.protogen.persistence.models.ReservationEntity;
+import za.co.protogen.controller.models.ReservationDTO;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class ReservationApiController {
     }
 
     @PostMapping
-    public void addReservation(@RequestBody ReservationEntity reservation) {
+    public void addReservation(@RequestBody ReservationDTO reservation) {
         reservationService.addReservation(reservation);
     }
 

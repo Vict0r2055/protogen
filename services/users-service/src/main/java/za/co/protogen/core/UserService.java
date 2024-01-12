@@ -4,10 +4,11 @@ import java.util.List;
 import java.time.LocalDate;
 // import za.co.protogen.domain.User;
 import za.co.protogen.persistence.models.UserEntity;
+import za.co.protogen.controller.models.UserDTO;
 
 public interface UserService {
     // interface's methodds
-    void addUser(UserEntity user);
+    void addUser(UserDTO user);
 
     void removeUser(Long Id);
 

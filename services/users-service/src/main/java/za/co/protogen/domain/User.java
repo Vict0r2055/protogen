@@ -4,10 +4,8 @@ package za.co.protogen.domain;
 import java.time.LocalDate;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "users")
 public class User {
-    @Id
+
     private int id;
     private String firstName;
     private String lastName;

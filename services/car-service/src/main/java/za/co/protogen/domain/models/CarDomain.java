@@ -57,6 +57,10 @@ public class CarDomain {
       return this.year;
    }
 
+   public String getVin() {
+      return this.vin;
+   }
+
    public int getMileage() {
       return this.mileage;
    }

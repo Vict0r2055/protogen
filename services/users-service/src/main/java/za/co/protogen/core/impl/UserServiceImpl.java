@@ -10,6 +10,8 @@ import za.co.protogen.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import za.co.protogen.persistence.models.UserEntity;
 import java.time.LocalDate;
+import za.co.protogen.adapter.UserMappers;
+import za.co.protogen.controller.models.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,7 +25,8 @@ public class UserServiceImpl implements UserService {
 
     // implements addUser method from UserService interface
     @Override
-    public void addUser(UserEntity user) {
+    public void addUser(UserDTO userDTO) {
+        UserEntity user = UserMappers.INSTANCE.populateResrvationEntity(userDTO);
         userRepository.save(user);
     }
 

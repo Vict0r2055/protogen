@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import za.co.protogen.persistence.models.UserEntity;
 import za.co.protogen.core.UserService;
 import java.util.List;
+import za.co.protogen.controller.models.UserDTO;
 
 @RestController
 @RequestMapping("/users")
@@ -27,7 +28,7 @@ public class UserApiController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody UserEntity user) {
+    public void addUser(@RequestBody UserDTO user) {
         userService.addUser(user);
     }
 
