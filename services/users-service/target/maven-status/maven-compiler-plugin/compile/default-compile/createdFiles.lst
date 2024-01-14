@@ -1,5 +1,6 @@
 com\baeldung\openapi\api\UsersApi$1.class
 com\baeldung\openapi\api\UsersApiDelegate.class
+za\co\protogen\domain\models\UserDomain.class
 com\baeldung\openapi\model\User.class
 za\co\protogen\utility\Constant.class
 za\co\protogen\domain\User.class
@@ -8,8 +9,12 @@ za\co\protogen\core\UserService.class
 za\co\protogen\Application.class
 com\baeldung\openapi\api\ApiUtil.class
 za\co\protogen\persistence\repository\UserRepository.class
+za\co\protogen\adapter\UserMappersImpl.class
+za\co\protogen\adapter\UserMappers.class
 za\co\protogen\config\RestClientConfig.class
 com\baeldung\openapi\api\UsersApiController$1.class
 com\baeldung\openapi\api\UsersApiController.class
-za\co\protogen\adapter\Mappers.class
+za\co\protogen\controller\models\UserDTO.class
 com\baeldung\openapi\api\UsersApi.class
+za\co\protogen\core\impl\UserServiceImpl.class
+za\co\protogen\persistence\models\UserEntity.class

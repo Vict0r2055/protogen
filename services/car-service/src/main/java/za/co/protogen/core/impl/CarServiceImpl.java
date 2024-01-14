@@ -14,10 +14,13 @@ import za.co.protogen.adapter.CarMappers;
 import za.co.protogen.controller.models.CarDTO;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 
 public class CarServiceImpl implements CarService {
+    private static final Logger logger = LoggerFactory.getLogger(CarServiceImpl.class);
 
     private final CarRepository carRepository;
 
@@ -27,14 +30,16 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addCar(CarDTO carDTO) {
-        CarEntity carEntity = CarMappers.INSTANCE.populateCarEntity(carDTO);
-        carRepository.save(carEntity);
+    public void addCar(CarDTO car) {
+        CarEntity carE = CarMappers.INSTANCE.populateCarEntity(car);
+        carRepository.save(carE);
+        logger.info("Car added successfully");
     }
 
     @Override
     public void removeCar(Long carId) {
         carRepository.deleteById(carId);
+        logger.info("Car removed successfully: {}", carId);
     }
 
     @Override
@@ -68,7 +73,8 @@ public class CarServiceImpl implements CarService {
         Optional<CarEntity> optionalExistingCar = carRepository.findById(carId);
         optionalExistingCar.ifPresent(existingCar -> {
             if (existingCar.getCarId() == carId) {
-                if (updatedCar.getTransmission() != null && !updatedCar.getTransmission().isEmpty()) {
+                if (updatedCar.getTransmission() != null &&
+                        !updatedCar.getTransmission().isEmpty()) {
                     existingCar.setTransmission(updatedCar.getTransmission());
                 }
                 if (updatedCar.getFuelType() != null && !updatedCar.getFuelType().isEmpty()) {
@@ -105,6 +111,7 @@ public class CarServiceImpl implements CarService {
 
             }
             carRepository.save(existingCar);
+            logger.info("Car with ID : {} updated successfully", carId);
         });
     }
 

@@ -18,5 +18,6 @@ public interface UserService {
 
     void updateUser(Long Id, UserEntity updatedUser);
 
-    List<UserEntity> searchUsers(String firstName, String lastName, LocalDate dateOfBirth, String rsaId);
+    // List<UserEntity> searchUsers(String firstName, String lastName, LocalDate
+    // dateOfBirth, String rsaId);
 }

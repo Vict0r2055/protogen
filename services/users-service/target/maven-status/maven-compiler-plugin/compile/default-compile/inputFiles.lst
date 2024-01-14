@@ -1,11 +1,12 @@
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\target\generated-sources\openapi\src\main\java\com\baeldung\openapi\api\UsersApi.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\config\RestClientConfig.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\controller\UserApiController.java
+C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\adapter\UserMappers.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\domain\models\UserDomain.java
+C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\controller\models\UserDTO.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\core\UserService.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\persistence\repository\UserRepository.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\target\generated-sources\openapi\src\main\java\com\baeldung\openapi\api\ApiUtil.java
-C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\adapter\Mappers.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\persistence\models\UserEntity.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\src\main\java\za\co\protogen\Application.java
 C:\Users\luyas\OneDrive\Desktop\protogen\services\users-service\target\generated-sources\openapi\src\main\java\com\baeldung\openapi\api\UsersApiDelegate.java

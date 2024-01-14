@@ -3,7 +3,7 @@ package com.baeldung.openapi.api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-12T20:14:59.524943600+02:00[Africa/Johannesburg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-14T10:59:25.375654100+02:00[Africa/Johannesburg]")
 @Controller
 @RequestMapping("${openapi.reservation.base-path:}")
 public class ReservationsApiController implements ReservationsApi {

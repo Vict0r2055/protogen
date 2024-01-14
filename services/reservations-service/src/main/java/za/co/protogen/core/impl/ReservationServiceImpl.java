@@ -21,9 +21,12 @@ import org.springframework.web.client.RestTemplate;
 
 import za.co.protogen.adapter.ReservationMappers;
 import za.co.protogen.controller.models.ReservationDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
+    private static final Logger logger = LoggerFactory.getLogger(ReservationServiceImpl.class);
 
     private final RestTemplate restTemplate;
     private final ReservationRepository reservationRepository;
@@ -46,7 +49,7 @@ public class ReservationServiceImpl implements ReservationService {
         if (carResponse.getStatusCode() != HttpStatus.OK || carResponse.getBody() == null) {
             // car not found
             car = false;
-            System.out.println("car not found");
+            logger.warn("Car not found for ID: {}", reservation.getCarId());
         }
 
         // Verify user existence
@@ -56,12 +59,15 @@ public class ReservationServiceImpl implements ReservationService {
         if (userResponse.getStatusCode() != HttpStatus.OK || userResponse.getBody() == null) {
             // User not found
             user = false;
-            System.out.println("user not found");
+            logger.warn("User not found for ID: {}", reservation.getUserId());
         }
         if (user != false && car != false) {
 
             reservationRepository.save(reservation);
+            logger.info("Reservation added successfully.");
 
+        } else {
+            logger.error("Failed to add reservation. User or car not found.");
         }
         ;
 
@@ -70,16 +76,20 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void removeReservation(Long reservationId) {
         reservationRepository.deleteById(reservationId);
+        logger.info("Successfully removed Resvation:  {}", reservationId);
     }
 
     @Override
     public ReservationEntity getReservationById(Long reservationId) {
         Optional<ReservationEntity> optionalReservation = reservationRepository.findById(reservationId);
+        logger.info("Reservation found: {}", optionalReservation);
         return optionalReservation.orElse(null);
+
     }
 
     @Override
     public List<ReservationEntity> getAllReservations() {
+        logger.info("Retriving all resrvations");
         return reservationRepository.findAll();
     }
 
@@ -106,6 +116,7 @@ public class ReservationServiceImpl implements ReservationService {
             }
 
             reservationRepository.save(existingReservation);
+            logger.info("Reservation updated: {}", reservationId);
         });
     }
 

@@ -16,7 +16,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link CarsApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-12T19:47:08.187410200+02:00[Africa/Johannesburg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-14T10:14:42.737416100+02:00[Africa/Johannesburg]")
 public interface CarsApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {

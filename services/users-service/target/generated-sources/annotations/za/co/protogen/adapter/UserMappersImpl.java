@@ -6,8 +6,8 @@ import za.co.protogen.persistence.models.UserEntity;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-12T20:35:07+0200",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 3.37.0.v20240103-0614, environment: Java 17.0.9 (Eclipse Adoptium)"
+    date = "2024-01-14T10:26:12+0200",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.8.1 (Eclipse Adoptium)"
 )
 public class UserMappersImpl implements UserMappers {
 
@@ -19,10 +19,10 @@ public class UserMappersImpl implements UserMappers {
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setDateOfBirth( reservationDTO.getDateOfBirth() );
-        userEntity.setFirstName( reservationDTO.getFirstName() );
         userEntity.setId( (long) reservationDTO.getId() );
+        userEntity.setFirstName( reservationDTO.getFirstName() );
         userEntity.setLastName( reservationDTO.getLastName() );
+        userEntity.setDateOfBirth( reservationDTO.getDateOfBirth() );
         userEntity.setRsaId( reservationDTO.getRsaId() );
 
         return userEntity;
